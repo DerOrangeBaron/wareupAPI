@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
 require("dotenv").config();
 
-const config = require('../../config');
 const UserModel = require("../models/user.model");
 const LogModel = require("../models/log.model");
 const DepositModel = require("../models/deposit.model");
@@ -17,13 +16,13 @@ const DepositCalendarModel = require("../models/depositCalendar.model");
 const BookingRequestModel = require("../models/bookingRequest.model"); 
 
 const sequelize = new Sequelize(
-    config.db.database,
-    config.db.user,
-    config.db.password,
+    process.env.DB_DATABASE,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
     {
-      host:  config.db.host,
+      host:  process.env.DB_HOST,
       dialect: "mysql",
-      logging: config.db.logging
+      logging: process.env.DB_LOGGING
     },
   );
 
@@ -33,7 +32,7 @@ sequelize.authenticate().then(() => {
     console.error('Unable to connect to the database: ', error);
 });
 
-sequelize.sync({ force: config.db.recreate,  alter: config.db.alter }).then(() => {
+sequelize.sync({ force: process.env.DB_RECREATE,  alter: process.env.DB_ALTER }).then(() => {
   ServiceGroupModel.loadInitialData();
   ServiceModel.loadInitialData();
   DepartmentModel.loadInitialData();

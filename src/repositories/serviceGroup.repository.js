@@ -1,6 +1,5 @@
 const enums = require('../utils/enums');
 const { ServiceGroupModel, ServiceModel } = require("../database");
-const config = require('../../config'); 
 
 class ServiceGroupRepository{
   constructor(logRepository){

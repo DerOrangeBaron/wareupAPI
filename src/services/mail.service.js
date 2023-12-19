@@ -1,5 +1,4 @@
 const enums = require('../utils/enums');
-const config = require('../../config');
  
 class MailService {
     constructor(logRepository) {
@@ -9,11 +8,11 @@ class MailService {
     async sendEmailUserCreated(email) {
         try{  
             const sgMail = require('@sendgrid/mail');
-            sgMail.setApiKey(config.sendgrid.apikey);
+            sgMail.setApiKey(process.env.SG_APIKEY);
             
             const msg = {
                 to: email, 
-                from: config.sendgrid.from,
+                from: process.env.SG_FROM,
                 subject: 'Welcome to WareUp',
                 template_id: 'c4047597-e073-4b35-ba93-2c9724a3d1e5'
             };
@@ -35,15 +34,15 @@ class MailService {
     async sendEmailPasswordRecovery(user, dataEncrypt) {
         try{ 
             const sgMail = require('@sendgrid/mail');
-            sgMail.setApiKey(config.sendgrid.apikey);
+            sgMail.setApiKey(process.env.SG_APIKEY);
             
             const msg = {
                 to: user.email, 
-                from: config.sendgrid.from,
+                from: process.env.SG_FROM,
                 subject: 'Recuperacion de contraseña',
                 template_id: 'd-ff8f6eee18964ab6a6bc704be3d4da37',
                 dynamicTemplateData: { 
-                    linkEncrypt: config.frontendUrl+'/password-recovery?'+dataEncrypt,
+                    linkEncrypt: process.env.FRONTEND_URL+'/password-recovery?'+dataEncrypt,
                     name: user.name
                 }
             }
@@ -62,11 +61,11 @@ class MailService {
     async sendContactForm(contactForm) {
         try{ 
             const sgMail = require('@sendgrid/mail');
-            sgMail.setApiKey(config.sendgrid.apikey);
+            sgMail.setApiKey(process.env.SG_APIKEY);
             
             const msg = {
-                to: config.sendgrid.contactTo, 
-                from: config.sendgrid.from,
+                to: process.env.SG_CONTACTTO, 
+                from: process.env.SG_FROM,
                 subject: contactForm.subject,
                 template_id: 'd-48b73a2b24ae42adbe37ba1291adc9f4',
                 dynamicTemplateData: {
