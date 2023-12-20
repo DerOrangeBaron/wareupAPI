@@ -22,7 +22,7 @@ const sequelize = new Sequelize(
     {
       host:  process.env.DB_HOST,
       dialect: "mysql",
-      logging: process.env.DB_LOGGING
+      logging: process.env.DB_LOGGING === 'true',
     },
   );
 
@@ -32,7 +32,7 @@ sequelize.authenticate().then(() => {
     console.error('Unable to connect to the database: ', error);
 });
 
-sequelize.sync({ force: process.env.DB_RECREATE,  alter: process.env.DB_ALTER }).then(() => {
+sequelize.sync({ force: process.env.DB_RECREATE === 'true',  alter: process.env.DB_ALTER === 'true' }).then(() => {
   ServiceGroupModel.loadInitialData();
   ServiceModel.loadInitialData();
   DepartmentModel.loadInitialData();
