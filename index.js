@@ -22,7 +22,14 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-app.use(cors())
+
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200 
+};
+
+app.use(cors(corsOptions))
 
 const PORT = process.env.PORT || 3001;
 
