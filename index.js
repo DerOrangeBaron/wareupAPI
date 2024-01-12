@@ -42,6 +42,9 @@ app.use(`/api/${API_VERSION}`, depositRequestRouter);
 app.use(`/api/${API_VERSION}`, commonRouter);
 app.use(`/api/${API_VERSION}`, depositCalendarRouter);
 app.use(`/api/${API_VERSION}`, bookingRequesRoute);
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "ok" });
+});
 
 app.get("*", (req, res) => {
   res.status(404).json({ message: "Welcome to the begining of nothingness" });
@@ -55,9 +58,6 @@ app.use((err, req, res, next) => {
   return;
 });
 
-app.get("/", (req, res) => {
-  res.json({ message: "ok" });
-});
 
 
 app.listen(PORT, () => {
