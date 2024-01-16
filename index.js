@@ -42,8 +42,8 @@ app.use(`/api/${API_VERSION}`, depositRequestRouter);
 app.use(`/api/${API_VERSION}`, commonRouter);
 app.use(`/api/${API_VERSION}`, depositCalendarRouter);
 app.use(`/api/${API_VERSION}`, bookingRequesRoute);
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "ok" });
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
 });
 
 app.get("*", (req, res) => {
