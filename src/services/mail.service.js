@@ -14,7 +14,7 @@ class MailService {
                 to: email, 
                 from: process.env.SG_FROM,
                 subject: 'Welcome to WareUp',
-                template_id: 'c4047597-e073-4b35-ba93-2c9724a3d1e5'
+                template_id: 'd-2592feb6275647f6a0cc7bdf4e24ee1a'
             };
 
             sgMail.send(msg)
@@ -40,7 +40,7 @@ class MailService {
                 to: user.email, 
                 from: process.env.SG_FROM,
                 subject: 'Recuperacion de contraseña',
-                template_id: 'd-ff8f6eee18964ab6a6bc704be3d4da37',
+                template_id: 'd-2592feb6275647f6a0cc7bdf4e24ee1a',
                 dynamicTemplateData: { 
                     linkEncrypt: process.env.FRONTEND_URL+'/password-recovery?'+dataEncrypt,
                     name: user.name
@@ -67,7 +67,7 @@ class MailService {
                 to: process.env.SG_CONTACTTO, 
                 from: process.env.SG_FROM,
                 subject: contactForm.subject,
-                template_id: 'd-48b73a2b24ae42adbe37ba1291adc9f4',
+                template_id: 'd-2592feb6275647f6a0cc7bdf4e24ee1a',
                 dynamicTemplateData: {
                     clientName: contactForm.clientName,
                     email: contactForm.email,
