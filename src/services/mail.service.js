@@ -62,9 +62,9 @@ class MailService {
         try{ 
             const sgMail = require('@sendgrid/mail');
             sgMail.setApiKey(process.env.SG_APIKEY);
-            
+            console.log(JSON.parse(process.env.SG_CONTACTTO));
             const msg = {
-                to: JSON.parse(process.env.YOUR_ENV)(process.env.SG_CONTACTTO), 
+                to: JSON.parse(process.env.SG_CONTACTTO), 
                 from: process.env.SG_FROM,
                 subject: contactForm.subject,
                 template_id: 'd-2592feb6275647f6a0cc7bdf4e24ee1a',
